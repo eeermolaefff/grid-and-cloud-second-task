@@ -19,7 +19,7 @@ Each of the modules runs in its own container.
 
 The application is deployed on my local cluster and available from the Internet on: `https://grid-and-cloud-frontend.project-stambul.ru`
 
-By scanning the network of a running website, you can see how the `Frontend module` and the `API module` located on `https://grid-and-cloud-api.project-stambul.ru` interact. 
+By scanning the network of a running website, you can see how the `Frontend module` and the `API module` located on `https://grid-and-cloud-api.project-stambul.ru` interact with each other. 
 
 ## Launch instruction
 
