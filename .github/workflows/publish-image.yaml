@@ -28,7 +28,7 @@ jobs:
               context: frontend
               push: true
               tags: fallen2320/grid-and-cloud-second-task-frontend:latest
-              build-args: BACKEND_API=https://api.grid-and-cloud-bank-simulator.ru
+              build-args: BACKEND_API=https://grid-and-cloud-api.project-stambul.ru
 
     push_to_registries_api:
         name: API Docker Image

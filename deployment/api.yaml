@@ -60,17 +60,17 @@ metadata:
   name: grid-and-cloud-ingress-api
   annotations:
     nginx.ingress.kubernetes.io/enable-cors: "true"
-    nginx.ingress.kubernetes.io/cors-allow-origin: "https://frontend.grid-and-cloud-bank-simulator.ru"
+    nginx.ingress.kubernetes.io/cors-allow-origin: "https://grid-and-cloud-frontend.project-stambul.ru"
     nginx.ingress.kubernetes.io/cors-allow-credentials: "true"
     cert-manager.io/cluster-issuer: "letsencrypt-prod"
 spec:
   ingressClassName: nginx
   tls:
   - hosts:
-    - api.grid-and-cloud-bank-simulator.ru
+    - grid-and-cloud-api.project-stambul.ru
     secretName: api-tls
   rules:
-  - host: api.grid-and-cloud-bank-simulator.ru
+  - host: grid-and-cloud-api.project-stambul.ru
     http:
       paths:
       - path: /

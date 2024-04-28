@@ -11,7 +11,7 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-@CrossOrigin(origins = {"https://frontend.grid-and-cloud-bank-simulator.ru", "http://localhost:3000/"})
+@CrossOrigin(origins = {"https://grid-and-cloud-frontend.project-stambul.ru", "http://localhost:3000/"})
 @RestController
 class DatabaseController {
     private final Logger logger = Logger.getLogger(this.getClass());

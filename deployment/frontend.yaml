@@ -58,10 +58,10 @@ spec:
   ingressClassName: nginx
   tls:
   - hosts:
-    - frontend.grid-and-cloud-bank-simulator.ru
+    - grid-and-cloud-frontend.project-stambul.ru
     secretName: frontend-tls
   rules:
-  - host: frontend.grid-and-cloud-bank-simulator.ru
+  - host: grid-and-cloud-frontend.project-stambul.ru
     http:
       paths:
       - path: /
