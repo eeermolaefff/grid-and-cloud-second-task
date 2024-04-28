@@ -21,4 +21,13 @@ The application is deployed on my local cluster and available from the Internet 
 
 By scanning the network of a running website, you can see how the `Frontend module` and the `API module` located on https://grid-and-cloud-api.project-stambul.ru interact with each other.
 
+## Deployment
+
+Docker images are built and published via `GitHub CI/CD`. The corresponding config is located in the `./.github/workflows` directory.
+
+Configuration files located in the `./deployment` directory were used to deploy the program on the cluster by running the command:
+        
+    k create -f .
+
+
 
