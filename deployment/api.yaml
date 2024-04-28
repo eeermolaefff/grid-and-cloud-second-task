@@ -29,7 +29,7 @@ spec:
             - name: POSTGRES_PASSWORD
               value: password
             - name: POSTGRES_URL
-              value: jdbc:postgresql://postgres-service.default.svc.cluster.local:5432/
+              value: jdbc:postgresql://grid-and-cloud-database-svc.default.svc.cluster.local:5432/
             - name: TZ
               value: "Europe/Moscow"
           resources:
