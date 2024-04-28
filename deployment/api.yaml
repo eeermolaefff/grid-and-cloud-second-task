@@ -1,0 +1,82 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: grid-and-cloud-api
+  labels:
+    app: grid-and-cloud-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: grid-and-cloud-api
+      tier: app
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: grid-and-cloud-api
+        tier: app
+    spec:
+      containers:
+        - image: fallen2320/grid-and-cloud-second-task-api:latest
+          imagePullPolicy: Always
+          name: app
+          env:
+            - name: POSTGRES_USER
+              value: user
+            - name: POSTGRES_PASSWORD
+              value: password
+            - name: POSTGRES_URL
+              value: jdbc:postgresql://postgres-service.default.svc.cluster.local:5432/
+            - name: TZ
+              value: "Europe/Moscow"
+          resources:
+            requests:
+              memory: 1000Mi
+            limits:
+              memory: 1500Mi
+              cpu: 500m
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: grid-and-cloud-api-svc
+spec:
+  ports:
+    - name: p8080
+      port: 8080
+      targetPort: 8080
+      protocol: TCP
+  selector:
+    app: grid-and-cloud-api
+
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: grid-and-cloud-ingress-api
+  annotations:
+    nginx.ingress.kubernetes.io/enable-cors: "true"
+    nginx.ingress.kubernetes.io/cors-allow-origin: "https://frontend.grid-and-cloud-bank-simulator.ru"
+    nginx.ingress.kubernetes.io/cors-allow-credentials: "true"
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+spec:
+  ingressClassName: nginx
+  tls:
+  - hosts:
+    - api.grid-and-cloud-bank-simulator.ru
+    secretName: api-tls
+  rules:
+  - host: api.grid-and-cloud-bank-simulator.ru
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: grid-and-cloud-api-svc
+            port:
+              number: 8080

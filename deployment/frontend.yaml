@@ -1,0 +1,74 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: grid-and-cloud-frontend
+  labels:
+    app: grid-and-cloud-frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: grid-and-cloud-frontend
+      tier: app
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: grid-and-cloud-frontend
+        tier: app
+    spec:
+      containers:
+        - image: fallen2320/grid-and-cloud-second-task-frontend:latest
+          imagePullPolicy: Always
+          name: app
+          env:
+            - name: TZ
+              value: "Europe/Moscow"
+          resources:
+            requests:
+              memory: 1000Mi
+            limits:
+              memory: 1500Mi
+              cpu: 500m
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: grid-and-cloud-frontend-svc
+spec:
+  ports:
+    - name: p3000
+      port: 3000
+      targetPort: 3000
+      protocol: TCP
+  selector:
+    app: grid-and-cloud-frontend
+
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: grid-and-cloud-ingress-frontend
+  annotations:
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+spec:
+  ingressClassName: nginx
+  tls:
+  - hosts:
+    - frontend.grid-and-cloud-bank-simulator.ru
+    secretName: frontend-tls
+  rules:
+  - host: frontend.grid-and-cloud-bank-simulator.ru
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: grid-and-cloud-frontend-svc
+            port:
+              number: 3000
+

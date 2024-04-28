@@ -1,0 +1,78 @@
+name: Grid-And-Cloud Second Task CI/CD
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+    push_to_registries_frontend:
+        name: Frontend Docker Image
+        runs-on: ubuntu-latest
+        permissions:
+          packages: write
+          contents: read
+        steps:
+          - name: Check out the repo
+            uses: actions/checkout@v3
+    
+          - name: Log in to Docker Hub
+            uses: docker/login-action@v3
+            with:
+              username: ${{ secrets.DOCKER_USERNAME }}
+              password: ${{ secrets.DOCKER_PASSWORD }}
+    
+          - name: Build and push second task Frontend Docker image
+            uses: docker/build-push-action@v5
+            with:
+              context: frontend
+              push: true
+              tags: fallen2320/grid-and-cloud-second-task-frontend:latest
+              build-args: BACKEND_API=https://api.grid-and-cloud-bank-simulator.ru
+
+    push_to_registries_api:
+        name: API Docker Image
+        runs-on: ubuntu-latest
+        permissions:
+            packages: write
+            contents: read
+        steps:
+          - name: Check out the repo
+            uses: actions/checkout@v3
+
+          - name: Log in to Docker Hub
+            uses: docker/login-action@v3
+            with:
+                username: ${{ secrets.DOCKER_USERNAME }}
+                password: ${{ secrets.DOCKER_PASSWORD }}
+        
+          - name: Build and push second task API Docker images
+            uses: docker/build-push-action@v5
+            with:
+                context: api
+                push: true
+                tags: fallen2320/grid-and-cloud-second-task-api:latest
+
+
+    push_to_registries_postgres:
+        name: Database Docker Image
+        runs-on: ubuntu-latest
+        permissions:
+            packages: write
+            contents: read
+        steps:
+          - name: Check out the repo
+            uses: actions/checkout@v3
+    
+          - name: Log in to Docker Hub
+            uses: docker/login-action@v3
+            with:
+                username: ${{ secrets.DOCKER_USERNAME }}
+                password: ${{ secrets.DOCKER_PASSWORD }}
+    
+          - name: Build and push second task Database Docker images
+            uses: docker/build-push-action@v5
+            with:
+                context: database
+                push: true
+                tags: fallen2320/grid-and-cloud-second-task-database:latest
