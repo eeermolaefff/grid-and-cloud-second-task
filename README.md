@@ -26,7 +26,7 @@ By scanning the network of a running website, you can see how the `Frontend modu
 In order for a locally deployed application to have Internet access, `NGINX Ingress Controller` must be deployed on the cluster. Otherwise, all services will work except `Frontend module`. The interaction between the other modules over the local network can be checked on the following ports:
 
 - `Database module` is available on `http://localhost:32228`
-- `API module` is available on `http://localhost:32229`
+- `API module` is available on `http://localhost:32227`
 
 To launch the app, run the commands:
 

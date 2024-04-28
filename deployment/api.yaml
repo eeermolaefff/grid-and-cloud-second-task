@@ -50,7 +50,7 @@ spec:
     - name: p8080
       port: 8080
       targetPort: 8080
-      nodePort: 32229
+      nodePort: 32227
       protocol: TCP
   selector:
     app: grid-and-cloud-api
