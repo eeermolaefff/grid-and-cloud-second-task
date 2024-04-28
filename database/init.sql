@@ -21,4 +21,11 @@ BEFORE UPDATE ON accounts
 FOR EACH ROW
 EXECUTE PROCEDURE trigger_set_timestamp();
 
+INSERT INTO accounts(name, surname, balance) VALUES
+    ('Elizabeth', 'Taylor', 20000.00),
+    ('Emma', 'Brown', 1101.5),
+    ('Helen', 'Anderson', 1500.00),
+    ('James', 'Johnson', 12300.35),
+    ('Stephen', 'Brown', 10.00),
+    ('Will', 'Smith', 50000.00);
 
