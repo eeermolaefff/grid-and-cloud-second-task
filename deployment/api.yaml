@@ -6,7 +6,7 @@ metadata:
   labels:
     app: grid-and-cloud-api
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
       app: grid-and-cloud-api
