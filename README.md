@@ -1,4 +1,4 @@
-# Grid and cloud project (Task 2)
+#  Toy Bank Simulator
 
 ## Description
 
@@ -15,7 +15,7 @@ The implementation consists of three modules:
 
 Each of the modules runs in its own container.
 
-## Extra achievement
+## Extra achievement 
 
 The application is deployed on my local cluster and available from the Internet on: https://grid-and-cloud-frontend.project-stambul.ru
 
