@@ -1,4 +1,4 @@
-#  Toy Bank Simulator
+#  Toy Project for Grid and Сloud Computing
 
 ## Description
 
